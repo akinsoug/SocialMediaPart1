@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="ISO-8859-1">
+<title>User Page</title>
+</head>
+<body>
+	<div class="container">
+
+		<div th:replace="fragments/navbar"></div> <!-- linking navbar  -->
+		
+		<form th:action="@{/follow/} + ${user.username}" th:if="${!following}" method="post">
+		    <button style="float:right" type="Submit" class="btn btn-lg btn-success">Follow</button>
+		</form>
+		<form th:action="@{/unfollow/} + ${user.username}" th:if="${following}" method="post">
+		    <button style="float:right" type="Submit" class="btn btn-lg btn-primary unfollow_btn">Following</button>
+		</form>
+		
+		
+
+	</div>
+</body>
+</html>

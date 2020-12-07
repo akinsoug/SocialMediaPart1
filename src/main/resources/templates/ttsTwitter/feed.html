@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+<title>Tweet Feed</title>
+</head>
+<body>
+	<div class="container">
+
+		<div th:replace="fragments/navbar"></div>
+		<!-- linking navbar  -->
+		<!--   -->
+		<div class="container">
+			<h2 style="text-align: center;">Tweets</h2>
+	
+			<div style="padding: 0em 2em 2em 2em;">
+				<form th:action="@{/tweets/new}" method="get">
+					<br />
+					<div th:each="tweet:${tweetList}">
+						<div class="list-group ">
+							<div class=" list-group-item">
+								<h5 class="btn btn-md btn-primary btn-block " style="text-align: left;">
+									@<span th:text="${tweet.user.username}" ></span> <small
+										style="color: red;"><span
+										th:text="${#dates.format(tweet.createdAt, 'M/d/yy')}"></span></small>
+								</h5>
+								<p th:utext="${tweet.message}"></p>
+		
+							</div>
+		
+		
+						</div>
+					</div>
+		
+					<!-- href="/tweets/new" -->
+					<button class="btn btn-md btn-success btn-block" name="Submit"
+						value="" type="Submit">New Tweet</button>
+					<!-- <a href="/tweets/new">  </a> -->
+		
+				</form>
+		        
+		        <!-- 
+		        	The no tweet message  
+		        -->
+				<div th:if="${noTweet}" style="text-align: center;">
+					<h3>
+						<span class="text-warning" > No Tweets !!!</span>
+					</h3>
+				</div>
+			
+			</div>
+	</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+</body>
+
+</html>
